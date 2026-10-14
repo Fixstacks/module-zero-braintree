@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright © 2026 Roman Pasichnyk
+ * SPDX-License-Identifier: OSL-3.0 OR AFL-3.0
+ *
+ * Braintree Hosted Fields: the card fields are Braintree's iframes, so card
+ * data never reaches this server; checkout-braintree.js puts the token in
+ * `payment_method_nonce`.
+ *
+ * Shown by a `#payment-methods:has(...:checked) ~` rule: keep it a sibling of
+ * #payment-methods, and no `flex`/`grid` utility on the root (it beats
+ * `display:none`).
+ *
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ * @var \Zero\Braintree\ViewModel\CheckoutConfig $braintreeConfig
+ */
+$braintreeConfig = $block->getData('braintreeConfig');
+$clientToken = $braintreeConfig->getClientToken();
+if ($clientToken === null) {
+    return;
+}
+?>
+<div id="braintree-card-fields" class="flex-col gap-3 rounded-field border border-base-300 p-4">
+    <div class="field">
+        <label class="label" for="braintree-cc-number"><?= $escaper->escapeHtml(__('Card Number')) ?></label>
+        <div id="braintree-cc-number" class="braintree-hosted-field input input-bordered w-full"></div>
+    </div>
+    <div class="grid grid-cols-2 gap-3">
+        <div class="field">
+            <label class="label" for="braintree-cc-expiration"><?= $escaper->escapeHtml(__('Expiration Date')) ?></label>
+            <div id="braintree-cc-expiration" class="braintree-hosted-field input input-bordered w-full"></div>
+        </div>
+        <div class="field">
+            <label class="label" for="braintree-cc-cvv"><?= $escaper->escapeHtml(__('CVV')) ?></label>
+            <div id="braintree-cc-cvv" class="braintree-hosted-field input input-bordered w-full"></div>
+        </div>
+    </div>
+    <div id="braintree-error" class="text-error text-sm hidden" role="alert"></div>
+    <input type="hidden" name="payment_method_nonce" id="payment_method_nonce" />
+</div>
+<script src="https://js.braintreegateway.com/web/3.123.1/js/client.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.123.1/js/hosted-fields.min.js"></script>
+<script type="application/json" id="zero-braintree-config"><?= /* @noEscape */ json_encode(['clientToken' => $clientToken]) ?></script>
+<script src="<?= $escaper->escapeUrl($block->getViewFileUrl('Zero_Braintree::js/checkout-braintree.js')) ?>" defer></script>

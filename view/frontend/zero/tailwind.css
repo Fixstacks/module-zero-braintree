@@ -1,0 +1,45 @@
+/**
+ * Copyright © 2026 Roman Pasichnyk
+ * SPDX-License-Identifier: OSL-3.0 OR AFL-3.0
+ *
+ * Picked up by the Zero theme build (scripts/collect-module-styles.mjs)
+ * while Zero_Braintree is enabled: Tailwind builds the classes its templates use.
+ */
+@source "../templates/**/*.phtml";
+
+/* The card fields panel (checkout/hosted-fields.phtml): shown by a `:has()` rule on the payment method radios. */
+@layer components {
+    /*
+     * Braintree Hosted Fields: each `.braintree-hosted-field` is an
+     * empty `<div>` Braintree's own JS SDK injects a same-origin
+     * `<iframe>` into. DaisyUI's `input input-bordered` already gives
+     * it the right border/radius/background; this only adds a fixed
+     * height (an empty div has no text-line metrics to size from) and
+     * full-size sizing for the injected iframe.
+     */
+    .braintree-hosted-field {
+        display: block;
+        height: 2.75rem;
+        padding: 0;
+    }
+
+    .braintree-hosted-field iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    /*
+     * Pure-CSS show/hide for the card-fields panel based on which
+     * payment method radio is checked. `#braintree-card-fields` is
+     * `#payment-methods`'s sibling, not its child, hence `~` rather
+     * than a descendant selector.
+     */
+    #braintree-card-fields {
+        display: none;
+    }
+
+    #payment-methods:has(input[value="braintree"]:checked) ~ #braintree-card-fields {
+        display: flex;
+    }
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+    Copyright © 2026 Roman Pasichnyk
+    SPDX-License-Identifier: OSL-3.0 OR AFL-3.0
+
+    Braintree card payments (Hosted Fields) for Zero Checkout, on top of the
+    official PayPal_Braintree module (gateway, nonce handling, admin settings).
+    Kept out of Zero_Checkout so a store without PayPal_Braintree can run Zero
+    Checkout: disable or leave out this module and the card form is simply gone.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Zero_Braintree" setup_version="1.0.0">
+        <sequence>
+            <module name="Zero_Checkout"/>
+            <module name="PayPal_Braintree"/>
+        </sequence>
+    </module>
+</config>

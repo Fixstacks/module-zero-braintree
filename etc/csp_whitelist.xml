@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2026 Roman Pasichnyk
+ * SPDX-License-Identifier: OSL-3.0 OR AFL-3.0
+ *
+ * Hosts the Braintree client and Hosted Fields load from, whether or not
+ * PayPal_Braintree (which lists them too) is enabled.
+ */
+-->
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp:etc/csp_whitelist.xsd">
+    <policies>
+        <policy id="script-src">
+            <values>
+                <value id="braintree-js-braintreegateway-com" type="host">https://js.braintreegateway.com</value>
+                <value id="braintree-assets-braintreegateway-com" type="host">https://assets.braintreegateway.com</value>
+            </values>
+        </policy>
+        <policy id="frame-src">
+            <values>
+                <value id="braintree-assets-braintreegateway-com" type="host">https://assets.braintreegateway.com</value>
+            </values>
+        </policy>
+        <policy id="connect-src">
+            <values>
+                <value id="braintree-api-braintreegateway-com" type="host">https://api.braintreegateway.com</value>
+                <value id="braintree-api-sandbox-braintreegateway-com" type="host">https://api.sandbox.braintreegateway.com</value>
+                <value id="braintree-client-analytics-braintreegateway-com" type="host">https://client-analytics.braintreegateway.com</value>
+                <value id="braintree-client-analytics-sandbox-braintreegateway-com" type="host">https://client-analytics.sandbox.braintreegateway.com</value>
+                <value id="braintree-payments-braintree-api-com" type="host">https://payments.braintree-api.com</value>
+                <value id="braintree-payments-sandbox-braintree-api-com" type="host">https://payments.sandbox.braintree-api.com</value>
+            </values>
+        </policy>
+    </policies>
+</csp_whitelist>

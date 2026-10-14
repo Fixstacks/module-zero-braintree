@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+    Copyright © 2026 Roman Pasichnyk
+    SPDX-License-Identifier: OSL-3.0 OR AFL-3.0
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--
+        Lazy BraintreeAdapter: its constructor loads credentials and can throw, and
+        the view model is built on every checkout page. The constructor type-hints the
+        plain class (Magento's PHPCS forbids requesting a Proxy there), so the Proxy
+        is wired here.
+    -->
+    <type name="Zero\Braintree\ViewModel\CheckoutConfig">
+        <arguments>
+            <argument name="braintreeAdapter" xsi:type="object">
+                PayPal\Braintree\Model\Adapter\BraintreeAdapter\Proxy
+            </argument>
+        </arguments>
+    </type>
+</config>
