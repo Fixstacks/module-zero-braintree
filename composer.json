@@ -1,8 +1,8 @@
 {
-    "name": "fixstacks/module-zero-braintree",
+    "name": "zerofront/module-zero-braintree",
     "description": "Zero for Magento Open Source: Magento's Braintree payment (cards, PayPal, Apple Pay, Google Pay) inside Zero Checkout.",
     "type": "magento2-module",
-    "version": "1.3.2",
+    "version": "1.3.3",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
@@ -12,7 +12,7 @@
             "name": "Roman Pasichnyk"
         }
     ],
-    "homepage": "https://fixstacks.com/zero",
+    "homepage": "https://zerofront.dev",
     "keywords": [
         "magento",
         "magento2",
@@ -26,7 +26,10 @@
         "magento/framework": "103.0.*",
         "magento/module-csp": "*",
         "paypal/module-braintree-core": "*",
-        "fixstacks/module-zero-checkout": "^1.3"
+        "zerofront/module-zero-checkout": "^1.3"
+    },
+    "replace": {
+        "fixstacks/module-zero-braintree": "self.version"
     },
     "autoload": {
         "files": [

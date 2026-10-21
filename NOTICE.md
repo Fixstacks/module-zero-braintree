@@ -1,4 +1,4 @@
-# fixstacks/module-zero-braintree — licensing
+# zerofront/module-zero-braintree — licensing
 
 Copyright © 2026 Roman Pasichnyk.
 
